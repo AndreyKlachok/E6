@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        <button><a href="/accounts/logout/">Change user</a></button>
+        <p>{{ request.user }}</p>
+    {% else %}
+        <button>Login</button>
+    {% endif %}
+    <hr>
+    {% for user in users %}
+        {% if user != request.user %}
+            <p><a href="{% url 'user' user.id %}">{{ user.username }}</a></p>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
